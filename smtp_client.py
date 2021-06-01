@@ -25,9 +25,9 @@ class SmtpClient:
         for attachment in self.attachments:
             filename = attachment.strip()
 
-            mime_type = self.mime_types[filename.slpit(".")[-1]]
+            mime_type = self.mime_types[filename.split(".")[-1]]
             with open(filename, 'rb') as f:
-                filename = filename.slpit("/")[-1]
+                filename = filename.split("/")[-1]
                 file = b64encode(f.read())
                 attachments += (f'Content-Disposition: attachment; filename="{filename}"\n'
                                 'Content-Transfer-Encoding: base64\n'
